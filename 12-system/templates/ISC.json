@@ -1,0 +1,28 @@
+{
+  "$schema": "ISC (Ideal State Criteria) tracking schema",
+  "version": "1.0",
+  "criteria": [
+    {
+      "id": 1,
+      "criterion": "8-12 word state description (state, not action)",
+      "tag": "E",
+      "status": "PENDING",
+      "verify": "CLI|Test|Static|Browser|Grep|Read|Custom: method",
+      "evidence": null,
+      "notes": ""
+    }
+  ],
+  "antiCriteria": [
+    {
+      "id": 1,
+      "criterion": "What must NOT happen",
+      "status": "CLEAR"
+    }
+  ],
+  "satisfaction": {
+    "satisfied": 0,
+    "partial": 0,
+    "failed": 0,
+    "total": 0
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "version": 3,
+  "skills": {
+    "beautiful-mermaid": {
+      "source": "intellectronica/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/intellectronica/agent-skills.git",
+      "skillPath": "skills/beautiful-mermaid/SKILL.md",
+      "skillFolderHash": "88651e5cc10e4b028798dcfa45b1c1004e93f8b2",
+      "installedAt": "2026-01-31T18:47:46.976Z",
+      "updatedAt": "2026-01-31T18:47:46.976Z"
+    }
+  },
+  "dismissed": {}
+}

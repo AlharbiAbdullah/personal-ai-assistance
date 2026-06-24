@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!--
+  VISUAL PLAN — reusable skeleton. Clone into <project-root>/visual-plan/<feature>.html and fill it in.
+  Self-contained: inline CSS, hand-drawn diagrams via rough.js (Excalidraw's engine), Kalam font.
+  HARD RULES: it must be beautiful, and diagrams are Excalidraw-style (rough.js) — never Mermaid/boxy.
+  The HTML is the plan and the approval gate — no source edits until the plan is approved.
+  Diagram engine: call graph(svgId, nodes, edges) — see the architecture example in build().
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Visual Plan — {FEATURE}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.js"></script>
+<style>
+  :root{
+    --bg0:#1d2021; --bg1:#282828; --bg2:#32302f; --bg3:#3c3836; --border:#504945;
+    --fg:#d4be98; --fg-dim:#a89984; --muted:#928374;
+    --yellow:#d8a657; --green:#a9b665; --aqua:#89b482; --red:#ea6962; --blue:#7daea3; --purple:#d3869b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg0);color:var(--fg);font:15px/1.65 "Inter",-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+  .hand{font-family:"Kalam",cursive}
+  code{font-family:ui-monospace,Menlo,monospace;font-size:.88em;background:var(--bg2);padding:1px 6px;border-radius:5px;color:var(--aqua)}
+  .wrap{max-width:940px;margin:0 auto;padding:40px 26px 90px}
+  h1{font-family:"Kalam",cursive;font-size:36px;font-weight:700;margin:0 0 2px;line-height:1.15}
+  #squig{display:block;height:14px;margin:-2px 0 12px}
+  h2{font-size:19px;color:var(--yellow);margin:30px 0 12px;font-weight:600}
+  h3{margin:0 0 6px;font-size:15px;font-weight:600}
+  .meta{color:var(--muted);font-size:13px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .badge{display:inline-block;padding:3px 11px;border-radius:99px;font-size:12px;font-weight:600;background:var(--bg2);border:1px solid var(--border)}
+  .badge.gate{color:var(--yellow);border-color:var(--yellow)}
+  .banner{background:linear-gradient(180deg,var(--bg2),var(--bg1));border:1px solid var(--border);border-left:3px solid var(--purple);padding:11px 16px;border-radius:10px;margin:16px 0 4px;color:var(--fg-dim);font-size:13px}
+  nav{position:sticky;top:0;background:rgba(29,32,33,.92);backdrop-filter:blur(6px);padding:14px 0;margin-bottom:8px;border-bottom:1px solid var(--border);display:flex;gap:7px;flex-wrap:wrap;z-index:5}
+  .tab{background:var(--bg1);border:1px solid var(--border);color:var(--fg-dim);padding:7px 15px;border-radius:99px;cursor:pointer;font-size:13px;font-family:inherit;transition:.15s}
+  .tab:hover{color:var(--fg);border-color:var(--muted)} .tab.active{background:var(--bg3);color:var(--yellow);border-color:var(--yellow)}
+  section{display:none} section.active{display:block;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+  p{margin:9px 0} ul{margin:9px 0;padding-left:22px} li{margin:5px 0} .lead{color:var(--fg-dim)}
+  .canvas{background:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(80,73,69,.18) 24px),var(--bg1);border:1px solid var(--border);border-radius:14px;padding:14px;margin:14px 0;overflow-x:auto}
+  .canvas svg{display:block;width:100%;height:auto;min-width:520px}
+  .cap{color:var(--muted);font-size:12.5px;text-align:center;margin:2px 0 4px}
+  .card{background:var(--bg1);border:1px solid var(--border);border-left:3px solid var(--aqua);border-radius:11px;padding:13px 17px;margin:13px 0;box-shadow:0 1px 0 rgba(0,0,0,.25)}
+  .card.warn{border-left-color:var(--red)}
+  .check{list-style:none;padding-left:0} .check li{display:flex;gap:11px;align-items:flex-start;background:var(--bg1);border:1px solid var(--border);border-radius:9px;padding:11px 14px;margin:9px 0}
+  .check input{margin-top:3px;accent-color:var(--yellow);width:16px;height:16px} .check label{cursor:pointer}
+  footer{margin-top:46px;padding-top:18px;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>{FEATURE TITLE}</h1>
+  <svg id="squig" viewBox="0 0 420 14" preserveAspectRatio="none"></svg>
+  <div class="meta">Project: {PROJECT} <span class="badge gate">gate: awaiting approval</span> <span class="badge">created {DATE}</span></div>
+  <div class="banner">Skeleton — clone, then fill every section. Diagrams hand-drawn via rough.js (needs internet for font + lib CDN).</div>
+</header>
+
+<nav>
+  <button class="tab active" data-tab="overview">Overview</button>
+  <button class="tab" data-tab="arch">Architecture</button>
+  <button class="tab" data-tab="flow">Flow</button>
+  <button class="tab" data-tab="data">Data</button>
+  <button class="tab" data-tab="ui">UI</button>
+  <button class="tab" data-tab="decisions">Decisions</button>
+  <button class="tab" data-tab="questions">Questions</button>
+</nav>
+
+<section id="overview" class="active">
+  <h2>Outcome</h2>
+  <p class="lead">{Prose-first: what we're building and why. One tight paragraph.}</p>
+  <h2>At a glance</h2>
+  <ul><li>{key decision}</li><li>{key decision}</li></ul>
+  <h2>Build sequence</h2>
+  <ul><li>{step 1}</li><li>{step 2}</li></ul>
+</section>
+
+<section id="arch"><h2>Architecture</h2>
+  <div class="canvas"><svg id="d-arch" viewBox="0 0 900 240"></svg></div>
+  <div class="cap">{one-line caption}</div>
+</section>
+
+<section id="flow"><h2>Key flow</h2>
+  <div class="canvas"><svg id="d-flow" viewBox="0 0 900 150"></svg></div>
+  <div class="cap">{one-line caption}</div>
+</section>
+
+<section id="data"><h2>Data model</h2>
+  <div class="canvas"><svg id="d-er" viewBox="0 0 380 230" style="min-width:340px;max-width:420px;margin:0 auto"></svg></div>
+</section>
+
+<section id="ui"><h2>UI / wireframe</h2>
+  <p>{Use HTML state toggles to show design options live — this is why HTML.}</p>
+  <div class="card">{mockup}</div>
+</section>
+
+<section id="decisions"><h2>Decisions</h2>
+  <div class="card"><h3>{Decision}</h3><p>{trade-off + the pick}</p></div>
+  <div class="card warn"><h3>{Risk}</h3><p>{what could go wrong}</p></div>
+</section>
+
+<section id="questions"><h2>Open questions — decide before build</h2>
+  <ul class="check">
+    <li><input type="checkbox" id="q1"><label for="q1">{blocker 1}</label></li>
+    <li><input type="checkbox" id="q2"><label for="q2">{blocker 2}</label></li>
+  </ul>
+</section>
+
+<footer>Visual plan — the approval gate. No source edits until this plan is approved.</footer>
+</div>
+
+<script>
+  const NS="http://www.w3.org/2000/svg";
+  const C={fg:"#d4be98",muted:"#928374",yellow:"#d8a657",green:"#a9b665",aqua:"#89b482",blue:"#7daea3"};
+  function side(n,s){return {l:[n.x,n.y+n.h/2],r:[n.x+n.w,n.y+n.h/2],t:[n.x+n.w/2,n.y],b:[n.x+n.w/2,n.y+n.h]}[s];}
+  function txt(svg,x,y,label,color,size,anchor){
+    label.split("\n").forEach((ln,i,a)=>{const t=document.createElementNS(NS,"text");
+      t.setAttribute("x",x);t.setAttribute("y",y+(i-(a.length-1)/2)*(size+4)+size*0.34);
+      t.setAttribute("text-anchor",anchor||"middle");t.setAttribute("fill",color);
+      t.setAttribute("font-family","'Kalam',cursive");t.setAttribute("font-size",size);
+      t.textContent=ln;svg.appendChild(t);});}
+  // graph(svgId, nodes{id:{x,y,w,h,t,s}}, edges[{a,as,b,bs}]) — hand-drawn boxes + arrows
+  function graph(id,nodes,edges,size){
+    const svg=document.getElementById(id),rc=rough.svg(svg);
+    edges.forEach(e=>{const a=side(nodes[e.a],e.as),b=side(nodes[e.b],e.bs),o={roughness:1.1,strokeWidth:1.5,stroke:C.muted};
+      svg.appendChild(rc.line(a[0],a[1],b[0],b[1],o));
+      const ang=Math.atan2(b[1]-a[1],b[0]-a[0]),L=11;
+      svg.appendChild(rc.line(b[0],b[1],b[0]-L*Math.cos(ang-0.4),b[1]-L*Math.sin(ang-0.4),o));
+      svg.appendChild(rc.line(b[0],b[1],b[0]-L*Math.cos(ang+0.4),b[1]-L*Math.sin(ang+0.4),o));});
+    Object.values(nodes).forEach(n=>{svg.appendChild(rc.rectangle(n.x,n.y,n.w,n.h,{roughness:1.3,bowing:1.6,strokeWidth:1.8,stroke:n.s||C.fg,fill:n.f||"#32302f",fillStyle:"solid"}));
+      txt(svg,n.x+n.w/2,n.y+n.h/2,n.t,n.s||C.fg,size||16);});}
+  function build(){
+    const sq=rough.svg(document.getElementById("squig"));
+    document.getElementById("squig").appendChild(sq.line(4,8,416,7,{roughness:2.6,strokeWidth:2.4,stroke:C.yellow}));
+    // EXAMPLE — replace with the real plan's nodes/edges
+    graph("d-arch",{
+      a:{x:30, y:90,w:160,h:60,t:"Component A",s:C.yellow},
+      b:{x:360,y:90,w:160,h:60,t:"Component B",s:C.aqua},
+      c:{x:690,y:90,w:170,h:60,t:"Store",s:C.blue}
+    },[{a:"a",as:"r",b:"b",bs:"l"},{a:"b",as:"r",b:"c",bs:"l"}],16);
+  }
+  document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
+    document.querySelectorAll(".tab,section").forEach(e=>e.classList.remove("active"));
+    t.classList.add("active");document.getElementById(t.dataset.tab).classList.add("active");});
+  document.querySelectorAll(".check input").forEach(c=>{const k="vp-"+location.pathname+c.id;
+    c.checked=localStorage.getItem(k)==="1";c.onchange=()=>localStorage.setItem(k,c.checked?"1":"0");});
+  if(window.rough){build();}else{window.addEventListener("load",build);}
+</script>
+</body>
+</html>

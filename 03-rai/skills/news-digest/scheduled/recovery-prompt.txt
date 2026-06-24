@@ -1,0 +1,26 @@
+MANUAL RECOVERY RUN — this is NOT scheduled mode. Time is irrelevant; do NOT apply the Scheduled Mode deadline contract (no 85-minute collection deadline, no skipping cooldowns to beat a watchdog). Run your news-digest skill now to generate today's full DAILY digest and save it to ~/helm/08-bawaba/daily/. Collect all sources, run fully autonomously, do not ask for confirmation.
+
+THE POINT OF THIS RUN IS TO FIX X COLLECTION. For several days X has collected only ~10-20 tweets/run while every other source hit target. The most likely cause is a COLLECTION bug, not (only) a throttle: javascript_tool has a hard ~45-second CDP timeout, so any long or blocking in-page scroll loop is killed after ~45s and yields almost nothing — which looks exactly like a throttle. Fix it with a DETACHED scroller:
+
+1. Open a fresh dedicated Chrome tab on https://x.com/home and verify you are logged in.
+2. Inject chrome_snippets/x_observer.js. It auto-captures tweets into window.__tweets via a MutationObserver plus a 1.5s resweep — capture happens on its own; you do NOT need to scroll inside a javascript_tool call to capture. Control surface: __tweets_size(), __tweets_dump(), __tweets_reset(), __tweets_uninstall().
+3. Inject a DETACHED, fire-and-forget auto-scroller and let it keep running on its own AFTER the call returns. It MUST be a setInterval (NOT a blocking loop, NOT top-level await) that:
+   - scrolls window.scrollBy(0, ~800px with plus/minus 20% jitter) every 600-900ms,
+   - every 15-25 ticks does a 2-5s dwell pause (humanize — bot-avoidance is mandatory),
+   - writes window.__x_status = {size: __tweets_size(), ticks, stalls, ts} each tick,
+   - clears its own interval after ~120s of zero size growth (plateau).
+   Return immediately (e.g. return 'started').
+4. POLL from outside with SHORT javascript_tool reads (each well under 45s): read window.__x_status and __tweets_size() every ~15-20s. Never sit inside one long call. Keep polling for as many minutes as needed until __tweets_size() reaches target (For You 2000, Following 180) or true plateau (~120s of no growth in __x_status).
+5. Dump via __tweets_dump(). x.com CSP blocks fetch() to 127.0.0.1, so DO NOT POST to a localhost sink — write the JSON to a Blob and trigger an <a download> click, then mv the file from ~/Downloads into ~/helm/03-rai/skills/news-digest/.runs/<today>/ as x_foryou.json (and x_following.json after __tweets_reset() then selecting the Following tab).
+
+DIAGNOSIS — record the verdict in .runs/<today>/x_foryou_state.json:
+- If the detached scroller pulls hundreds/thousands in the first window → the collection bug is FIXED; proceed normally and collect the full target.
+- If the first window WITH the detached scroller STILL caps at ~10-15 tweets and then the feed shows an endless loading spinner (genuinely not serving more) → that is a real ACCOUNT-LEVEL read rate-limit, not a collection bug. Do at most ONE 45-minute cooldown (close tab, wait, fresh tab + re-navigate) to confirm; if still capped, STOP — do not grind further cooldowns — and ship the digest partial with an explicit note of the finding.
+
+All other sources (Substack, Medium, HN, Reddit, GitHub) collect per the skill as normal. Cross-day dedup priors are already seeded in ~/helm/08-bawaba/daily/.
+
+BROWSER SELECTION: if multiple browsers are connected, call list_connected_browsers then select_browser with the deviceId whose isLocal is true. Do NOT call AskUserQuestion for browser selection; do not wait.
+
+EARLY-ABORT (fail-fast): as your very FIRST action — before collecting any source — call list_connected_browsers; if it returns zero browsers or none with isLocal true, retry that call twice with a 30-second wait between tries. If after those retries there is still no local browser within 3 minutes, the run CANNOT proceed: write a one-line failure marker to BOTH ~/helm/08-bawaba/.news-failed-<YYYY-MM-DD>.md AND ~/helm/08-bawaba/daily/.news-failed-<YYYY-MM-DD>.md (substitute today's date for <YYYY-MM-DD>) stating 'Chrome MCP reports zero connected local browsers — aborting before collection', then immediately type /exit. Do NOT begin collecting any source and do NOT keep waiting.
+
+FINISH: you are not finished until POST-FILL is complete — every <CLAUDE_FILL_*> placeholder replaced with real prose and every <!-- raw: --> scaffolding line stripped. Before ending, run grep -c CLAUDE_FILL and grep -c '<!-- raw:' on the day's digest file; both MUST be 0.

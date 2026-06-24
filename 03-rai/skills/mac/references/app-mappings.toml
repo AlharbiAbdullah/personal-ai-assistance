@@ -1,0 +1,104 @@
+# Per-theme app mapping. What each app needs to be set to when this theme is active.
+# Used by /mac-theme when generating theme.lua and by audit to check adapters.
+# For apps the user hasn't installed yet, mark `manual = true` and note the source.
+#
+# Border = iconic, high-contrast palette pick per theme. Must be (a) in the
+# theme's own palette (normal/bright/selection_bg) and (b) bright enough vs
+# that theme's background to make the focused-window indicator obvious.
+# Canonical `accent` values were too muted on cool-bg themes — pink/orange/
+# cyan/purple variants from each palette make the focus cue actually pop.
+
+[catppuccin]
+vscode = "Catppuccin Mocha"
+cursor = "Catppuccin Mocha"
+border = "0xfff38ba8"
+
+[gruvbox]
+vscode = "Gruvbox Dark Medium"
+cursor = "Gruvbox Dark Medium"
+border = "0xffd65d0e"
+vscode_extension = "jdinhlife.gruvbox"
+
+[nord]
+vscode = "Nord"
+cursor = "Nord"
+border = "0xff88c0d0"
+
+[tokyo-night]
+vscode = "Tokyo Night"
+cursor = "Tokyo Night"
+border = "0xffbb9af7"
+
+[miasma]
+vscode = "Miasma"
+vscode_source = "https://raw.githubusercontent.com/OldJobobo/omarchy-miasma-theme/master/vscode.json"
+cursor = "Miasma"
+border = "0xffbb7744"
+manual = true
+
+[cobalt2]
+vscode = "Cobalt2"
+cursor = "Cobalt2"
+border = "0xffffc600"
+
+[gruvbox-light]
+vscode = "Gruvbox Light Medium"
+cursor = "Gruvbox Light Medium"
+border = "0xffcc241d"
+vscode_extension = "jdinhlife.gruvbox"
+
+[everforest]
+vscode = "Everforest Dark"
+cursor = "Everforest Dark"
+border = "0xffdbbc7f"
+
+[kanagawa]
+vscode = "Kanagawa"
+cursor = "Kanagawa"
+border = "0xffe6c384"
+
+[ristretto]
+vscode = "Monokai Pro (Filter Ristretto)"
+cursor = "Monokai Pro (Filter Ristretto)"
+border = "0xfff38d70"
+
+[rose-pine]
+vscode = "Rosé Pine"
+cursor = "Rosé Pine"
+border = "0xffc4a7e7"
+
+[melange]
+vscode = "Melange Redux: Dark"
+cursor = "Melange Redux: Dark"
+border = "0xffe49b5d"
+vscode_extension = "rtud.melange-redux"
+
+[bamboo]
+vscode = "bamboo"
+cursor = "bamboo"
+border = "0xff81af58"
+vscode_extension = "rileybruins.bamboo-nvim"
+
+[kanagawa-dragon]
+vscode = "Kanagawa Dragon"
+cursor = "Kanagawa Dragon"
+border = "0xffc4746e"
+vscode_extension = "metaphore.kanagawa-vscode-color-theme"
+
+[nightfox]
+vscode = "Nightfox"
+cursor = "Nightfox"
+border = "0xff719cd6"
+vscode_extension = "keifererikson.nightfox"
+
+[duskfox]
+vscode = "Duskfox"
+cursor = "Duskfox"
+border = "0xffc4a7e7"
+vscode_extension = "keifererikson.nightfox"
+
+[nordfox]
+vscode = "Nordfox"
+cursor = "Nordfox"
+border = "0xff81a1c1"
+vscode_extension = "keifererikson.nightfox"

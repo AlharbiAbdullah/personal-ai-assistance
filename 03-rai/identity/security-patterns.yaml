@@ -1,0 +1,87 @@
+# Rai Security Patterns - USER CUSTOMIZED
+# This is loaded first by security-validator.py
+# Edit this file to customize security rules for your environment.
+---
+version: "1.0"
+last_updated: "2026-06-23"
+
+philosophy:
+  mode: safe_functional
+  principle: "Meaningful protection without friction"
+
+bash:
+  blocked:
+    # Regex (matched via re.search). Block ONLY catastrophic targets:
+    # root `/`, bare home `~`/`~/`, and root/home globs. Targeted deletes
+    # like `rm -rf /Users/me/proj/dir` do NOT match and are allowed.
+    - pattern: "rm\\s+-(rf|fr)\\s+/(\\s|$|\\*)"
+      reason: "Filesystem destruction (root)"
+    - pattern: "rm\\s+-(rf|fr)\\s+~(/?(\\s|$)|/\\*)"
+      reason: "Home directory destruction"
+    - pattern: "sudo\\s+rm\\s+-(rf|fr)\\s+/(\\s|$|\\*)"
+      reason: "Filesystem destruction with sudo (root)"
+    - pattern: "sudo\\s+rm\\s+-(rf|fr)\\s+~(/?(\\s|$)|/\\*)"
+      reason: "Home directory destruction with sudo"
+    - pattern: "diskutil eraseDisk"
+      reason: "Disk destruction"
+    - pattern: "diskutil zeroDisk"
+      reason: "Disk destruction"
+    - pattern: "dd if=/dev/zero"
+      reason: "Disk overwrite"
+    - pattern: "mkfs"
+      reason: "Filesystem format"
+    - pattern: "gh repo delete"
+      reason: "Repository deletion"
+    - pattern: "gh repo edit --visibility public"
+      reason: "Repository exposure"
+
+  confirm:
+    - pattern: "git push --force"
+      reason: "Force push can lose commits"
+    - pattern: "git push -f"
+      reason: "Force push can lose commits"
+    - pattern: "git reset --hard"
+      reason: "Loses uncommitted changes"
+    - pattern: "DROP DATABASE"
+      reason: "Database destruction"
+    - pattern: "DROP TABLE"
+      reason: "Table destruction"
+    - pattern: "TRUNCATE"
+      reason: "Table data destruction"
+    - pattern: "terraform destroy"
+      reason: "Infrastructure destruction"
+    - pattern: "docker system prune"
+      reason: "Container/image cleanup"
+    # Targeted `sudo rm -rf /path` → confirm. Catastrophic root/home still hard-blocked above.
+    - pattern: "sudo\\s+rm\\s+-(rf|fr)\\b"
+      reason: "Recursive force delete with sudo"
+
+  alert:
+    - pattern: "curl.*\\|.*sh"
+      reason: "Piping curl to shell"
+    - pattern: "curl.*\\|.*bash"
+      reason: "Piping curl to bash"
+
+paths:
+  zeroAccess:
+    - "~/.ssh/id_*"
+    - "~/.ssh/*.pem"
+    - "~/.aws/credentials"
+    - "~/.gnupg/private*"
+    - "**/credentials.json"
+    - "**/service-account*.json"
+
+  readOnly:
+    - "/etc/**"
+
+  confirmWrite:
+    - "**/.env"
+    - "**/.env.*"
+    - "~/.ssh/*"
+
+  noDelete:
+    - ".git/**"
+    - "LICENSE*"
+    - "README.md"
+
+projects: {}
