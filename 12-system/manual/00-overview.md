@@ -4,6 +4,8 @@ The vault is a brain folder. It is one principal's externalized cognition, paire
 
 > Last updated: 2026-06-14. This manual is a compiled overview; the live source of truth is the CLAUDE.md files and the source under `03-rai/`.
 
+> **Lineage.** This system is an adaptation of [PAI — Personal AI Infrastructure](https://github.com/danielmiessler/Personal_AI_Infrastructure) by Daniel Miessler. The seven-phase algorithm, the identity-loaded-every-session model, and the hooks-and-skills architecture all trace back to his work. See the README's "Credits & inspiration" for the full acknowledgment.
+
 ## Two principals
 
 | Principal | Identity folder | Role |

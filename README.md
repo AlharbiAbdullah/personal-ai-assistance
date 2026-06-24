@@ -106,6 +106,16 @@ the mechanics underneath are real and battle-tested.
 
 ---
 
+## Credits & inspiration
+
+This project was inspired — heavily — by **[PAI · Personal AI Infrastructure](https://github.com/danielmiessler/Personal_AI_Infrastructure)** by **[Daniel Miessler](https://danielmiessler.com)**. PAI is the original idea and the primary source this kit grew out of: the philosophy of treating Claude Code as the *engine* and building your own personal layer on top of it, the identity that loads every session, the seven-phase problem-solving algorithm (OBSERVE → THINK → PLAN → BUILD → EXECUTE → VERIFY → LEARN), and the hooks-and-skills architecture all trace back to Daniel's work.
+
+If you find this useful, go to the source: read [Daniel's writing on building a Personal AI Infrastructure](https://danielmiessler.com/blog/personal-ai-infrastructure) and explore [the PAI project](https://github.com/danielmiessler/Personal_AI_Infrastructure). This kit is one person's adaptation of those ideas — the credit for the concept is his.
+
+And the whole thing runs on **[Claude Code](https://claude.com/claude-code)** by Anthropic — the engine underneath it all.
+
+---
+
 ## License
 
 [MIT](./LICENSE). Use it, fork it, make it yours. If you build something good on top, sharing
