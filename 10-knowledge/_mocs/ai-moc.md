@@ -12,11 +12,14 @@ tags: [moc, ai]
 
 ## Foundations
 - [[10-knowledge/ai/what-are-ai-agents|What Are AI Agents]]
+- [[10-knowledge/ai/rag-retrieval-augmented-generation|RAG — Retrieval-Augmented Generation]]
+
+## Insights
+- [[10-knowledge/_insights/own-the-boring-layer|The Leverage Is in the Boring Layer]]
 
 ## To add as you learn
 - Prompting and context engineering
-- Retrieval / RAG
-- Evaluation and reliability
+- Evaluation and reliability — see the [[09-ideas/agent-eval-harness|agent-eval idea]]
 - Tool use and function calling
 
 ## How to use this
