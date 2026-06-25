@@ -257,7 +257,7 @@ Four `.md` files plus one YAML (not auto-loaded but read at runtime by hooks).
 
 ### Skills (35 top-level entries)
 
-30 routers + 5 leaves (`ask-model`, `map-updater`, `project-init`, `visual-plan`, `workflow`), with ~128 sub-skill files beneath the routers. Routers new since 2026-04-22: `writing`, `ask-model`, `investment`, `ubuntu`. (The old manual's "22 routers/leaves" count is stale.)
+31 routers + 4 leaves (`ask-model`, `map-updater`, `project-init`, `workflow`), with ~134 sub-skill files beneath the routers. Routers new since 2026-04-22: `writing`, `ask-model`, `investment`, `ubuntu`. (The old manual's "22 routers/leaves" count is stale.)
 
 ### Algorithm — v3.7.0
 

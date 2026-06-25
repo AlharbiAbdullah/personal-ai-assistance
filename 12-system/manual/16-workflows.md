@@ -54,7 +54,7 @@ This is the most important thing to know before following any playbook. The fold
 | `/process-sessions` | `/rai` → `process-sessions` |
 | `/news review` | `news-digest` skill (v5.6); the "review" wording maps to the graduated-gems review step |
 
-None of the underscore/flat names the playbooks cite exist at the top level anymore. The skills catalog is router-based now — 35 top-level entries (30 routers + 5 leaves). See [07-skills-catalog.md](./07-skills-catalog.md).
+None of the underscore/flat names the playbooks cite exist at the top level anymore. The skills catalog is router-based now — 35 top-level entries (31 routers + 4 leaves). See [07-skills-catalog.md](./07-skills-catalog.md).
 
 ### Stale paths
 

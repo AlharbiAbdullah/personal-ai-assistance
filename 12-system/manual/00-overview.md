@@ -137,7 +137,7 @@ When the user asks for something non-trivial, Rai enters the Algorithm. The Algo
 
 When the user asks for something trivial (a greeting, a quick lookup, a simple fix), Rai skips the Algorithm and answers directly.
 
-When Rai needs a specialized capability, it invokes a skill (`/research`, `/news-digest`, `/triage`, `/ideas`, `/investment`, etc.) or spawns an agent (`Task(subagent_type: "engineer")`, `architect`, `pentester`, etc.). There are 35 top-level skills (30 routers plus 5 leaves — `ask-model`, `map-updater`, `project-init`, `visual-plan`, `workflow`) covering roughly 128 sub-skills, and 12 agents (10 specialists plus the `algorithm` and `researcher` methodology agents).
+When Rai needs a specialized capability, it invokes a skill (`/research`, `/news-digest`, `/triage`, `/ideas`, `/investment`, etc.) or spawns an agent (`Task(subagent_type: "engineer")`, `architect`, `pentester`, etc.). There are 35 top-level skills (31 routers plus 4 leaves — `ask-model`, `map-updater`, `project-init`, `workflow`) covering roughly 134 sub-skills, and 12 agents (10 specialists plus the `algorithm` and `researcher` methodology agents).
 
 When the session ends, SessionEnd runs 7 hooks in order — `save-memory`, `work-completion-learning`, `session-summary`, `relationship-memory`, `update-counts`, `integrity-check`, `algorithm-scan` — saving the transcript to `semantic-memory/pending/`, logging learnings, saving relationship signals, running integrity checks, and cleaning up state files. The pending session waits there until `/rai process-sessions` drains it into ChromaDB. ChromaDB is a single-writer store: only the Linux coordinator box ("pc") embeds into it; the Mac is a read-only replica (see the sync note below).
 

@@ -2,11 +2,11 @@
 
 > Last updated: 2026-06-14.
 
-The full skill inventory. 35 top-level entries: 30 routers + 5 leaves. The leaves are `ask-model`, `map-updater`, `project-init`, `visual-plan`, `workflow`. Beneath the top-level entries sit roughly 128 sub-skill files.
+The full skill inventory. 35 top-level entries: 31 routers + 4 leaves. The leaves are `ask-model`, `map-updater`, `project-init`, `workflow`. Beneath the top-level entries sit roughly 134 sub-skill files.
 
 Every skill exists at `~/helm/03-rai/skills/{name}/SKILL.md` (router or leaf) or `~/helm/03-rai/skills/{router}/{sub-skill}.md` (sub-skill).
 
-> Source-of-truth note: `skills/MANIFEST.md` is STALE and undercounts. Its header still claims "28 top-level entries: 23 routers + 5 leaves" — the real tree is 35 entries (30 routers + 5 leaves). The MANIFEST table omits 6 routers (ideas, knowledge, learning, reading, triage, work), still shows pre-move sub-skill sets for several routers, and was last touched 2026-06-05. When the MANIFEST and the live `skills/` tree disagree, the live tree wins. This chapter reflects the live tree.
+> Source-of-truth note: `skills/MANIFEST.md` is STALE and undercounts. Its header still claims "28 top-level entries: 23 routers + 5 leaves" — the real tree is 35 entries (31 routers + 4 leaves). The MANIFEST table omits 6 routers (ideas, knowledge, learning, reading, triage, work), still shows pre-move sub-skill sets for several routers, and was last touched 2026-06-05. When the MANIFEST and the live `skills/` tree disagree, the live tree wins. This chapter reflects the live tree.
 
 ## Discovery and invocation
 
@@ -582,6 +582,34 @@ Full chapter: [14-work-and-projects.md](./14-work-and-projects.md).
 
 ---
 
+## Visual explainers (1 router)
+
+### /visual
+
+**Path:** `03-rai/skills/visual/SKILL.md`
+**Intent:** Render an idea as a single self-contained, animated HTML file you open in a
+browser — Excalidraw-style hand-drawn diagrams, a light/dark toggle, and rich interaction.
+All six sub-skills share one engine (`references/engine.html`).
+
+**Sub-skills (6):**
+
+| Sub-skill | Purpose |
+|-----------|---------|
+| `plan` | Plan a NEW feature / messy multi-file change — the HTML *is* the approval gate before code |
+| `explain` | Explain something that ALREADY exists (a system, codebase, concept, decision) |
+| `teach` | Teach a concept so the reader genuinely learns it (predict / retrieve / build-up) |
+| `compare` | Weigh two-or-more options head-to-head — scored matrix + a recommendation |
+| `trace` | Walk a bug / incident / request lifecycle — pulse to the failure point + timeline |
+| `data` | Explain a schema / dataset / pipeline (ER, medallion layers, lineage) |
+
+**When to invoke:** "visual plan/explain/teach/compare/trace/data", or "explain this visually".
+Outputs land in a disposable `visual/` folder at the project root, one HTML file per artifact.
+
+**Note:** Adapted from BuilderIO's `visual-plan` (the idea, not their stack). Earlier releases of
+this kit shipped a single `visual-plan` leaf skill; it is now the `plan` sub-skill of this router.
+
+---
+
 ## Skill router groups (conceptual orientation)
 
 From `skills/MANIFEST.md`, augmented to include the routers and leaves the MANIFEST omits:
@@ -592,6 +620,7 @@ From `skills/MANIFEST.md`, augmented to include the routers and leaves the MANIF
 | Engineering-workflow | git, project-init, map-updater |
 | Knowledge + content | research, investigation, scraping, content-analysis, media, business, writing, news-digest |
 | Thinking | think |
+| Visual explainers | visual |
 | Personal | life, routine, mac, ubuntu, investment |
 | External models | ask-model, gemini |
 | Brain maintenance | rai, recall |
@@ -620,10 +649,10 @@ From `skills/MANIFEST.md`:
 
 ## Skill counts
 
-- Top-level entries: 34 = 30 routers + 5 leaves.
-- Routers NEW since 2026-04-22 (4): `writing` (2026-05-06), `ask-model` (2026-05-16), `investment` (2026-05-31), `ubuntu` (2026-06-05). The top-level count is now 35 (30 routers + 5 leaves).
-- Leaves (4): `ask-model`, `map-updater`, `project-init`, `visual-plan`, `workflow`.
-- Sub-skill files (depth-2, excludes SKILL.md): ~128.
+- Top-level entries: 35 = 31 routers + 4 leaves.
+- Routers NEW since 2026-04-22 (4): `writing` (2026-05-06), `ask-model` (2026-05-16), `investment` (2026-05-31), `ubuntu` (2026-06-05). The top-level count is now 35 (31 routers + 4 leaves).
+- Leaves (4): `ask-model`, `map-updater`, `project-init`, `workflow`.
+- Sub-skill files (depth-2, excludes SKILL.md): ~134.
 - Total `.md` files under `skills/`: ~186. Total files of all types: ~635.
 
 The old manual's "22 skills" figure was wrong even for its own date — the 2026-04-22 baseline already had 29 top-level entries.

@@ -3,7 +3,7 @@
 From zero to your first session. Plan for ~15 minutes. None of this is hard — it's mostly
 putting files in the right place and telling Claude Code where to look.
 
-> **The short version:** clone this into `~/helm`, symlink a handful of files into `~/.claude`,
+> **The short version:** clone this into `~/helm`, run `./setup.sh` to wire it into `~/.claude`,
 > replace "John Doe" with you, and start Claude Code in `~/helm`.
 
 ---
@@ -42,8 +42,20 @@ cd ~/helm
 ## 2. Wire it into Claude Code
 
 Claude Code reads its config from `~/.claude`. We point a few entries there at the brain in
-`03-rai`. **Back up anything you already have first** — this won't delete your data, but don't
-clobber an existing setup blind:
+`03-rai`. The repo ships a script that does the whole thing — back up what it would replace,
+create the links, and verify:
+
+```bash
+cd ~/helm
+./setup.sh
+```
+
+It's safe to re-run: links that are already correct are left alone, and anything it replaces is
+moved to a timestamped `~/.claude/.pai-backup-*/` first. To check an existing setup without
+changing anything, run `./setup.sh --check`.
+
+<details>
+<summary>Prefer to do it by hand? The exact commands the script runs.</summary>
 
 ```bash
 # Back up an existing config if you have one
@@ -62,6 +74,8 @@ ln -sfn  ~/helm/03-rai/config/mcp.json      ~/.claude/mcp.json
 ln -sfn  ~/helm/03-rai/config/statusline.sh ~/.claude/statusline.sh
 ```
 
+</details>
+
 That's the whole integration: identity, skills, agents, hooks, memory, settings, and the
 status line now come from your vault.
 
@@ -69,13 +83,15 @@ status line now come from your vault.
 
 ## 3. Verify the wiring
 
+`setup.sh` already runs these at the end. To re-check by hand:
+
 ```bash
-ls -l ~/.claude/skills        # should point into ~/helm/03-rai/skills
+./setup.sh --check             # all links should report ✓
 python3 ~/helm/03-rai/hooks/session-start.py >/dev/null && echo "hooks run OK"
 uv run --python 3.12 --with chromadb python3 -c "import chromadb; print('chromadb OK')"
 ```
 
-If those three succeed, the machine side is done.
+If those succeed, the machine side is done.
 
 ---
 
@@ -131,8 +147,9 @@ the auto-load is working and you're live. Try a skill next — `/research`, `/ar
 
 ## 7. (Optional) Going further
 
-- **Daily news digest** — see [manual ch. 15](./12-system/manual/15-news-digest.md). The
-  `requests` package is needed for some collectors: `pip install --user requests`.
+- **Daily news digest** — see [manual ch. 15](./12-system/manual/15-news-digest.md). Its
+  collectors need a few Python packages; install them with
+  `pip install -r requirements.txt` (the core system needs none — they're all optional).
 - **Multiple machines** — see [`03-rai/SYNC-ARCHITECTURE.md`](./03-rai/SYNC-ARCHITECTURE.md).
   Single machine? Ignore it.
 - **Publishing your own fork publicly** — uncomment the `02-ana/` and `03-rai/memory/` lines in

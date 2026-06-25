@@ -128,7 +128,7 @@ Last updated 2026-06-14. Live source of truth for any folder's rules is its `CLA
 
 **LEARN** — Phase 7 of the Algorithm. Reflection + JSONL append + set `phase: complete`.
 
-**Leaf (skill)** — A skill with no sub-skills. `03-rai/skills/{name}/SKILL.md` only. Four exist: `ask-model`, `map-updater`, `project-init`, `visual-plan`, `workflow`. (Contrast Router.)
+**Leaf (skill)** — A skill with no sub-skills. `03-rai/skills/{name}/SKILL.md` only. Four exist: `ask-model`, `map-updater`, `project-init`, `workflow`. (Contrast Router.)
 
 **Lineage (idea)** — The graph of `derived_from:` and `spawned:` wiki-links across ideas in `09-ideas/`. Walked by `/ideas derive`.
 
@@ -196,7 +196,7 @@ Last updated 2026-06-14. Live source of truth for any folder's rules is its `CLA
 
 **Retrospective** — `05-projects/completed/{name}/retrospective.md`. Written when a project completes, using the Project Retrospective template (frontmatter `type: project-retrospective`).
 
-**Router (skill)** — A top-level skill folder containing sub-skill `.md` files. Routes user intent to the right sub-skill. 30 routers exist (out of 35 top-level skill entries; the other 4 are leaves).
+**Router (skill)** — A top-level skill folder containing sub-skill `.md` files. Routes user intent to the right sub-skill. 31 routers exist (out of 35 top-level skill entries; the other 4 are leaves).
 
 ## S
 
@@ -218,7 +218,7 @@ Last updated 2026-06-14. Live source of truth for any folder's rules is its `CLA
 
 **Simplicity Theorem** — Required first section of every Topic Note. One sentence (the "aha"). 2-3 sentences of body. No jargon. A 12-year-old could understand.
 
-**Skill** — A capability defined at `03-rai/skills/{router}/SKILL.md` (router/leaf) or `{router}/{sub-skill}.md` (sub-skill). Invoked via `Skill("name")` or `/name`. 35 top-level skills (30 routers + 5 leaves), ~128 sub-skill files.
+**Skill** — A capability defined at `03-rai/skills/{router}/SKILL.md` (router/leaf) or `{router}/{sub-skill}.md` (sub-skill). Invoked via `Skill("name")` or `/name`. 35 top-level skills (31 routers + 4 leaves), ~134 sub-skill files.
 
 **SKILL.md frontmatter validation** — A check folded into `session-start.py` (added 2026-05-13). It regex-validates the frontmatter of every `skills/{name}/SKILL.md` at session start and surfaces a `skills_bad=N` count in the `[rai]` startup footer. Keeps the skill catalog well-formed.
 

@@ -213,7 +213,7 @@ Invocation:
 /triage process-inbox
 ```
 
-The group is exactly three files on disk — `SKILL.md` (router), `process-landing.md`, and `process-inbox.md` under `~/helm/03-rai/skills/triage/`. Nothing else. The `/triage` router appears in the skills catalog (`./07-skills-catalog.md`) among the 30 routers.
+The group is exactly three files on disk — `SKILL.md` (router), `process-landing.md`, and `process-inbox.md` under `~/helm/03-rai/skills/triage/`. Nothing else. The `/triage` router appears in the skills catalog (`./07-skills-catalog.md`) among the 31 routers.
 
 When `process-inbox` routes an item to `09-ideas/` as a Seed, it hands off to the idea pipeline — Seed → Plant → Tree → Graduated, driven by the `/ideas` skill group. That pipeline is its own chapter: `./05-idea-lifecycle.md`. So `09-ideas/` is simultaneously a capture *destination* and the *start* of the idea lifecycle.
 

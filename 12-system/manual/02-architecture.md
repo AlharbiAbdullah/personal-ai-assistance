@@ -109,7 +109,7 @@ Skills are deterministic procedures with named steps. They route based on user i
 
 Agents are personas with their own context window. They are spawned for parallelism, isolation, or specialized expertise.
 
-35 top-level skill entries (30 routers + 5 leaves: ask-model, map-updater, project-init, visual-plan, workflow), spanning ~128 sub-skill files. 12 agents (10 specialists + 2 methodology). Claude Code discovers skills by a depth-1 scan of `skills/*/SKILL.md`; sub-skills are reachable only through their router.
+35 top-level skill entries (31 routers + 4 leaves: ask-model, map-updater, project-init, workflow), spanning ~134 sub-skill files. 12 agents (10 specialists + 2 methodology). Claude Code discovers skills by a depth-1 scan of `skills/*/SKILL.md`; sub-skills are reachable only through their router.
 
 Full references: [07-skills-catalog.md](./07-skills-catalog.md), [08-agents-catalog.md](./08-agents-catalog.md).
 

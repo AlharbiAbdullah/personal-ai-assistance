@@ -238,7 +238,7 @@ Empty in `settings.json`. The real MCP config lives in `03-rai/config/mcp.json`,
 }
 ```
 
-**These numbers are FROZEN and stale.** `update-counts.py` (SessionEnd) writes the recomputed counts to `lib/paths.get_settings_path()`, which returns the **non-existent** `03-rai/settings.json` (the real file is `03-rai/config/settings.json`). The write silently no-ops, so the `counts` block has not refreshed since 2026-04-18. **Do not quote these as current.** The real figures today: 35 top-level skill entries (30 routers + 5 leaves) and 19 wired hook scripts. The HUD plugin reads this block for the statusline, so the displayed count is also stale.
+**These numbers are FROZEN and stale.** `update-counts.py` (SessionEnd) writes the recomputed counts to `lib/paths.get_settings_path()`, which returns the **non-existent** `03-rai/settings.json` (the real file is `03-rai/config/settings.json`). The write silently no-ops, so the `counts` block has not refreshed since 2026-04-18. **Do not quote these as current.** The real figures today: 35 top-level skill entries (31 routers + 4 leaves) and 19 wired hook scripts. The HUD plugin reads this block for the statusline, so the displayed count is also stale.
 
 ### skipAutoPermissionPrompt / skipWorkflowUsageWarning
 

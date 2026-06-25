@@ -22,7 +22,7 @@ This manual is the read-the-manual document for the helm vault. It addresses bot
 | 04  | [Capture pipeline](./04-capture-pipeline.md)                   | 00-landing → 01-inbox → destination, the routing table                      |
 | 05  | [Idea lifecycle](./05-idea-lifecycle.md)                       | Seed → Plant → Tree → Graduated → Project, lineage tracking                 |
 | 06  | [Algorithm and PRD](./06-algorithm-and-prd.md)                 | The 7 phases, ISC decomposition, effort tiers, the PRD contract             |
-| 07  | [Skills catalog](./07-skills-catalog.md)                       | All 35 top-level skills (30 routers + 5 leaves) and their sub-skills, when to invoke each |
+| 07  | [Skills catalog](./07-skills-catalog.md)                       | All 35 top-level skills (31 routers + 4 leaves) and their sub-skills, when to invoke each |
 | 08  | [Agents catalog](./08-agents-catalog.md)                       | All 12 agents, models, scope, invocation                                    |
 | 09  | [Hooks reference](./09-hooks-reference.md)                     | Every hook, its event, what it does, what it costs                          |
 | 10  | [Memory systems](./10-memory-systems.md)                       | File memory + ChromaDB + state + work + learning + relationship + security  |

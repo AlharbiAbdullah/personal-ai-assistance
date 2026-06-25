@@ -92,7 +92,7 @@ Note: `.codemap/` does NOT exist in the vault. `/map-updater` only creates it in
                                │
 ┌──────────────────────────────▼──────────────────────────────────┐
 │  L4  SKILLS + AGENTS (capabilities)                             │
-│      35 skill entries (30 routers + 5 leaves) + 12 agents       │
+│      35 skill entries (31 routers + 4 leaves) + 12 agents       │
 └──────────────────────────────┬──────────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────────┐
@@ -362,7 +362,7 @@ The drain runs through the uv/chromadb wrapper `semantic-memory/scripts/py-chrom
                                               reading
 ```
 
-35 top-level entries = 30 routers + 5 leaves (ask-model, map-updater, project-init, visual-plan, workflow); ~128 sub-skill files. Routers new since 2026-04-22: writing, ask-model, investment, ubuntu. `/business` shrank to 3 subs (sales, presentations, pricing) when proposals + prds moved into the new `/writing` router (arabic, proposals, prds, social-media, blog). See `./07-skills-catalog.md`.
+35 top-level entries = 31 routers + 4 leaves (ask-model, map-updater, project-init, workflow); ~134 sub-skill files. Routers new since 2026-04-22: writing, ask-model, investment, ubuntu. `/business` shrank to 3 subs (sales, presentations, pricing) when proposals + prds moved into the new `/writing` router (arabic, proposals, prds, social-media, blog). See `./07-skills-catalog.md`.
 
 ## Agents tier map
 

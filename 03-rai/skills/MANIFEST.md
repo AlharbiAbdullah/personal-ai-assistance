@@ -1,6 +1,6 @@
 # Skills Manifest
 
-35 top-level entries: 30 routers + 5 leaves. Sub-skills live as `.md` files inside router folders. Claude Code discovers `skills/*/SKILL.md` at depth 1; routers dispatch to their sub-skill files internally.
+35 top-level entries: 31 routers + 4 leaves. Sub-skills live as `.md` files inside router folders. Claude Code discovers `skills/*/SKILL.md` at depth 1; routers dispatch to their sub-skill files internally.
 
 Naming: all folders kebab-case. Router `SKILL.md` has `name:` matching folder. Sub-skill filenames are kebab-case; their `name:` matches the filename stem.
 

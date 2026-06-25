@@ -4,7 +4,7 @@ _Last updated 2026-06-14._
 
 One page. Top paths, top skills, top agents, the 7 phases, the 5 effort tiers, the 4 idea states, the 3 project lifecycle stages, the 2 identity folders, the 1 critical rule.
 
-Counts: 35 skill entries (30 routers + 5 leaves), 12 agents, 16 templates, 8 workflows, 19 hook scripts / 24 wired invocations, Algorithm v3.7.0. CLAUDE.md is the live source of truth; this page is a quick index, not a substitute.
+Counts: 35 skill entries (31 routers + 4 leaves), 12 agents, 16 templates, 8 workflows, 19 hook scripts / 24 wired invocations, Algorithm v3.7.0. CLAUDE.md is the live source of truth; this page is a quick index, not a substitute.
 
 ## Top paths
 
@@ -31,7 +31,7 @@ Counts: 35 skill entries (30 routers + 5 leaves), 12 agents, 16 templates, 8 wor
 
 ## Top skills (by frequency)
 
-35 skill entries total = 30 routers + 5 leaves (leaves: `ask-model`, `map-updater`, `project-init`, `visual-plan`, `workflow`); ~128 sub-skill files. Full catalog in [07-skills-catalog.md](./07-skills-catalog.md).
+35 skill entries total = 31 routers + 4 leaves (leaves: `ask-model`, `map-updater`, `project-init`, `workflow`); ~134 sub-skill files. Full catalog in [07-skills-catalog.md](./07-skills-catalog.md).
 
 | Skill | Use |
 |-------|-----|

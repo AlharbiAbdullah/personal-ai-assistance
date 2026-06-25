@@ -27,7 +27,7 @@ It rests on two halves:
 
 - **`02-ana/` — you.** Your identity, goals, projects, journal, finances, family, voice.
   Auto-loaded every session so the assistant always has context. (Private. Never published.)
-- **`03-rai/` — the brain.** The machinery: 35 skills, 12 specialist agents, ~38 hooks, a
+- **`03-rai/` — the brain.** The machinery: 35 skills, 12 specialist agents, 19 lifecycle hooks, a
   7-phase problem-solving algorithm, file + vector memory, and config.
 
 Around them sit numbered folders for capturing ideas, doing research, taking notes, tracking
@@ -43,7 +43,7 @@ personal-ai-assistance/
 ├── 03-rai/         THE BRAIN — skills, agents, hooks, algorithm, config, memory
 │   ├── skills/       35 skills: /research, /architecture, /writing, /news-digest, /investment, …
 │   ├── agents/       12 specialists: architect, engineer, debugger, reviewer, researcher, …
-│   ├── hooks/        ~38 lifecycle hooks: identity load, memory, security, session naming
+│   ├── hooks/        19 lifecycle hooks: identity load, memory, security, session naming
 │   ├── algorithm/    the 7-phase method (OBSERVE → THINK → PLAN → BUILD → EXECUTE → VERIFY → LEARN)
 │   ├── config/       settings.json, mcp.json, statusline, security patterns
 │   ├── memory/       file memory — starts empty, fills as you use it
